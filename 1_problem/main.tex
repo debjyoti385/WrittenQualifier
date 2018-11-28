@@ -11,6 +11,7 @@
 \usepackage{subcaption}
 \usepackage{tabularx}
 \usepackage{ragged2e}
+\usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{caption}
@@ -19,15 +20,18 @@
 \usepackage{xspace}
 \usepackage[newfloat]{minted}
 \usepackage[english]{babel}
+
+
+
 \newenvironment{code}{\captionsetup{type=listing}}{}
 \SetupFloatingEnvironment{listing}{name=Listing}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}m{#1}}
 
 % Copyright
-%\setcopyright{none}
+\setcopyright{none}
 %\setcopyright{acmcopyright}
 %\setcopyright{acmlicensed}
-\setcopyright{rightsretained}
+% \setcopyright{rightsretained}
 %\setcopyright{usgov}
 %\setcopyright{usgovmixed}
 %\setcopyright{cagov}
@@ -123,7 +127,7 @@
 \copyrightyear{2018}
 \acmYear{2018}
 %\setcopyright{none}
-\acmConference{KDD'18}{August 19--23, 2018}{ London, UK.}
+\acmConference{University of Utah}{}{ Salt Lake City, USA.}
 %\acmPrice{15.00}
 %\acmISBN{-}
 %\acmDOI{-}
@@ -198,16 +202,11 @@
 
 \maketitle
 
-\input{01_abstract}
-\input{02_introduction}
-\input{03_preliminaries}
-\input{04_staircase}
-\input{05_pla}
-\input{06_mixed}
-\input{07_extension}
-\input{08_experiment}
-\input{09_related}
-\input{10_conclusion}
+% \input{01_abstract}
+\input{01_overview}
+\input{02_media_numbers}
+\input{03_media_space}
+\input{04_scraping}
 
 %\balance
 %\vspace{-3mm}

@@ -1,0 +1,129 @@
+\section{Part A}
+\subsection*{Social Media Data in Numbers}
+Marketing and social media experts broadly agrees to classify social media with respect to media type and its usage i.e {\em blogs, social networks, private messaging, microblogs,  photo sharing,  video sharing, professional networks,  enterprise social networks, forums, products/services review, social bookmarking, social gaming, collaborative projects  and virtual worlds} \cite{aichner2015measuring}. We now present a list of relevant social media according to the classification stated in Table \ref{table:social_media_list}.
+
+\begin{table}[t]
+% \centering
+\caption{List of Relevant Social Media}\vspace{-4mm}
+{\small
+\begin{tabular}{|l|l|} \hline
+\textbf{Category} &  \textbf{Social media sites with link }\\\hline
+Social Networks   &   \href{https://facebook.com}{Facebook}, \href{https://www.snapchat.com/}{Snapchat},  \href{https://www.wechat.com/en/}{WeChat}, \href{https://quora.com}{Quora}                     \\ \hline
+Private Messaging & \href{https://messenger.com}{Messenger}, \href{https://whatsapp.com}{Whatsapp}, \href{http://www.imqq.com/}{QQ}, \href{https://www.wechat.com/en/}{WeChat}, \href{https://www.skype.com}{Skype} \\ \hline
+Microblogs        &    \href{https://twitter.com}{Twitter}, \href{http://english.sina.com/weibo/}{Sina Weibo}, \href{https://tumblr.com}{Tumblr}           \\ \hline
+Photo Sharing     &   \href{https://instagram.com}{Instagram}, \href{http://www.photobucket.com/}{Photobucket}, \href{https://flickr.com}{Flickr}  \\ \hline
+Video Sharing     &   \href{https://www.youtube.com/}{Youtube}, \href{https://vimeo.com/}{Vimeo}, \href{https://www.dailymotion.com/us}{Dailymotion}  \\ \hline
+Professional Networks &  \href{https://linkedin.com}{LinkedIn}, \href{https://angel.co/}{AngelList}, \href{http://www.meetup.com/}{Meetup}    \\ \hline
+Enterprise Social Networks &  \href{https://www.workday.com/en-us/homepage.html}{Workday}   \\ \hline
+Blogs             &  \href{https://wordpress.com}{Wordpress}, \href{https://medium.com}{Medium}, \href{https://buffer.com/}{Buffer Blog}   \\ \hline
+Forums            &  \href{https://reddit.com}{Reddit}, \href{https://news.ycombinator.com}{Hacker News}, \href{https://quora.com}{Quora}    \\ \hline
+Products/Services Review & \href{https://yelp.com}{Yelp}, \href{https://fourquare.com}{Foursquare}, \href{https://places.google.com}{Google Places} \\ \hline
+Social Bookmarking &  \href{https://www.pinterest.com}{Pinterest}, \href{https://digg.com}{Digg}, \href{https://mix.com/}{Stumble Upon Mix}     \\ \hline
+Social Gaming &    \href{https://www.pokemongo.com/en-us/}{Pokemon Go}, \href{https://www.ign.com/}{IGN}, \href{https://www.gamespot.com/}{Gamespot} \cite{gamestatista}       \\ \hline
+Collaborative Projects &  \href{https://slack.com}{Slack}, \href{https://www.invisionapp.com/}{Invision}, \href{https://trello.com}{Trello}, \href{https://github.com}{Github}, \href{https://bitbucket.org/}{Bitbucket} \\ \hline
+\end{tabular}}
+\label{table:social_media_list}
+\end{table}
+
+The popularity of a social media site is primarily determined by the total number of users or monthly active users. Table \ref{table:users} presents facts about social media sites user base which gives some sense of its popularity \cite{sina_weibo_stats,expandedramblings, statista, domo}. The attribute {\em type} with values {\em (a) Total (b) Active}  represents whether the statistic is of total users or active monthly users respectively.
+
+\begin{table}[t]
+  \vspace{5mm}
+      \caption{Social media sites and number of users (in millions). }
+      \vspace{-3mm}
+{\small
+\centering
+    \begin{adjustbox}{width=1.05\linewidth,center}
+\begin{tabular}{|l | l | r r r r r r | l | l |} \hline
+             &  & \multicolumn{6}{c|}{\textbf{Years}} &  \\ \hline
+   \textbf{Category}                         & \textbf{Site}     & \textbf{2013} & \textbf{2014}  & \textbf{2015} & \textbf{2016} & \textbf{2017} & \textbf{2018} & \textbf{Type} \\ \hline
+
+   \multirow{2}{*}{\begin{tabular}{@{}l@{}}Social \\ Networks \end{tabular}} &    Facebook      & \multicolumn{1}{l}{1228} & \multicolumn{1}{l}{1393} & \multicolumn{1}{l}{1591} & \multicolumn{1}{l}{1860} & \multicolumn{1}{l}{2129} & \multicolumn{1}{l|}{2271} & Total   \\  \cline{2-9}
+
+               & WeChat      & \multicolumn{1}{r}{355} & \multicolumn{1}{r}{500} & \multicolumn{1}{r}{697} & \multicolumn{1}{r}{889} & \multicolumn{1}{r}{989} & \multicolumn{1}{r|}{1082} & Total  \\\cline{1-9}
+
+  \multirow{3}{*}{\begin{tabular}{@{}l@{}}Microblogs \end{tabular}} &    Twitter      & \multicolumn{1}{r}{241} & \multicolumn{1}{r}{284} & \multicolumn{1}{r}{305} & \multicolumn{1}{r}{318} & \multicolumn{1}{r}{330} & \multicolumn{1}{r|}{332} & Active  \\  \cline{2-9}
+
+              & Weibo  & \multicolumn{1}{r}{140} & \multicolumn{1}{r}{175} & \multicolumn{1}{r}{237} & \multicolumn{1}{r}{310} & \multicolumn{1}{r}{340} & \multicolumn{1}{r|}{392} & Active  \\\cline{2-9}
+
+              & Tumblr      & \multicolumn{1}{r}{175} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{460} & \multicolumn{1}{r|}{550} & Total  \\\cline{1-9}
+
+  \multirow{2}{*}{\begin{tabular}{@{}l@{}}Photo\\Sharing \end{tabular}} &    Instagram      & \multicolumn{1}{r}{150} & \multicolumn{1}{r}{300} & \multicolumn{1}{r}{460} & \multicolumn{1}{r}{600} & \multicolumn{1}{r}{870} & \multicolumn{1}{r|}{1000} & Active  \\  \cline{2-9}
+
+              & Snapchat  & \multicolumn{1}{r}{33} & \multicolumn{1}{r}{100} & \multicolumn{1}{r}{180} & \multicolumn{1}{r}{301} & \multicolumn{1}{r}{--} & \multicolumn{1}{r|}{400} & Total  \\\cline{1-9}
+
+\multirow{1}{*}{\begin{tabular}{@{}l@{}}Video \end{tabular}} &    Youtube      & \multicolumn{1}{r}{700} & \multicolumn{1}{r}{1100} & \multicolumn{1}{r}{1431} & \multicolumn{1}{r}{1618} & \multicolumn{1}{r}{1767} & \multicolumn{1}{r|}{1900} & Active  \\  \cline{1-9}
+
+\multirow{1}{*}{\begin{tabular}{@{}l@{}}Professional \end{tabular}} &    LinkedIn      & \multicolumn{1}{r}{277} & \multicolumn{1}{r}{347} & \multicolumn{1}{r}{414} & \multicolumn{1}{r}{467} & \multicolumn{1}{r}{530} & \multicolumn{1}{r|}{576} & Total  \\  \cline{1-9}
+
+\multirow{3}{*}{\begin{tabular}{@{}l@{}}Services \end{tabular}} &    Yelp      & \multicolumn{1}{r}{96} & \multicolumn{1}{r}{135} & \multicolumn{1}{r}{150} & \multicolumn{1}{r}{158} & \multicolumn{1}{r}{170} & \multicolumn{1}{r|}{178} & Active  \\  \cline{2-9}
+
+            & Foursquare  & \multicolumn{1}{r}{33} & \multicolumn{1}{r}{30} & \multicolumn{1}{r}{50} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r|}{55} & Total  \\\cline{2-9}
+
+            & Ridesharing  & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{208} & \multicolumn{1}{r}{272} & \multicolumn{1}{r}{338} & \multicolumn{1}{r|}{400} & Active  \\\cline{1-9}
+
+\multirow{1}{*}{\begin{tabular}{@{}l@{}}Bookmarking \end{tabular}} &    Pinterest      & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{110} & \multicolumn{1}{r}{160} & \multicolumn{1}{r}{220} & \multicolumn{1}{r|}{250} & Total  \\  \cline{1-9}
+
+        \end{tabular}
+    \end{adjustbox}
+    % \vspace{ + 15 mm}
+}
+    \label{table:users}
+\end{table}
+
+Other than the social media sites mentioned in Table \ref{table:users} there are some significant sites where only the current user statistics are available. For example Flickr, the photo sharing platform has 90 million users. Quora, a question answer social platform has 300 million users worldwide. Reddit, a social forum has 330 million active users.
+
+Number of users is not just important to measure the popularity of a social media site but also to estimate the amount of data storage it maintains. Another feature that will help us to estimate data storage is the amount of media units (e.g. posts, photos, microblogs, videos etc.) ingested per day. Table \ref{table:media_units} presents all the statistics of relevant social media from open internet \cite{zephoria, domo, statista, expandedramblings}. The statistics for social media sites missing in Table \ref{table:media_units} but mentioned in Table \ref{table:users} are almost impossible to find in open internet.
+
+
+
+\begin{table}[t]
+  \vspace{5mm}
+      \caption{Social media sites and media units created per day (in millions). }
+      \vspace{-3mm}
+{\small
+\centering
+    \begin{adjustbox}{width=1.05\linewidth,center}
+\begin{tabular}{|l | l | r r r r r r | l | l |} \hline
+             &  & \multicolumn{6}{c|}{\textbf{Years}} &  \\ \hline
+   \textbf{Category}                         & \textbf{Site}     & \textbf{2013} & \textbf{2014}  & \textbf{2015} & \textbf{2016} & \textbf{2017} & \textbf{2018} & \textbf{Unit} \\ \hline
+
+   \multirow{1}{*}{\begin{tabular}{@{}l@{}}Social  \end{tabular}} &    Facebook      & \multicolumn{1}{r}{3600} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{4320} & \multicolumn{1}{l}{--} & \multicolumn{1}{l|}{--} & posts   \\  \cline{1-9}
+
+               % & WeChat      & \multicolumn{1}{r}{355} & \multicolumn{1}{r}{500} & \multicolumn{1}{r}{697} & \multicolumn{1}{r}{889} & \multicolumn{1}{r}{989} & \multicolumn{1}{r|}{1082} & Total  \\\cline{1-9}
+
+  \multirow{2}{*}{\begin{tabular}{@{}l@{}}Microblogs \end{tabular}} &    Twitter      & \multicolumn{1}{r}{144} & \multicolumn{1}{r}{399} & \multicolumn{1}{r}{500} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{657} & \multicolumn{1}{r|}{682} & tweets  \\  \cline{2-9}
+
+              % & Weibo  & \multicolumn{1}{r}{140} & \multicolumn{1}{r}{175} & \multicolumn{1}{r}{237} & \multicolumn{1}{r}{310} & \multicolumn{1}{r}{340} & \multicolumn{1}{r|}{392} & Active  \\\cline{2-9}
+
+              & Tumblr      & \multicolumn{1}{r}{120$^*$} & \multicolumn{1}{r}{205$^*$} & \multicolumn{1}{r}{270$^*$} & \multicolumn{1}{r}{315$^*$} & \multicolumn{1}{r}{380$^*$} & \multicolumn{1}{r|}{448{$^*$}} & total blogs$^*$ \\\cline{1-9}
+
+  \multirow{2}{*}{\begin{tabular}{@{}l@{}}Photo\\Sharing \end{tabular}} &    Instagram      & \multicolumn{1}{r}{5} & \multicolumn{1}{r}{31} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r|}{67} & photos  \\  \cline{2-9}
+
+              & Snapchat  & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{760} & \multicolumn{1}{r|}{3000} & photos  \\\cline{1-9}
+
+\multirow{1}{*}{\begin{tabular}{@{}l@{}}Video \end{tabular}} &    Youtube      & \multicolumn{1}{r}{69,120$^\dagger$} & \multicolumn{1}{r}{103,680$^\dagger$} & \multicolumn{1}{r}{432,000$^\dagger$} & \multicolumn{1}{r}{576,000$^\dagger$} & \multicolumn{1}{r}{720,000$^\dagger$} & \multicolumn{1}{r|}{--} & hours video $^\dagger$  \\  \cline{1-9}
+
+% \multirow{1}{*}{\begin{tabular}{@{}l@{}}Professional \end{tabular}} &    LinkedIn      & \multicolumn{1}{r}{277} & \multicolumn{1}{r}{347} & \multicolumn{1}{r}{414} & \multicolumn{1}{r}{467} & \multicolumn{1}{r}{530} & \multicolumn{1}{r|}{576} & Total  \\  \cline{1-9}
+
+\multirow{2}{*}{\begin{tabular}{@{}l@{}}Services \end{tabular}} &    Yelp      & \multicolumn{1}{r}{40$^\ddagger$} & \multicolumn{1}{r}{55$^\ddagger$} & \multicolumn{1}{r}{75$^\ddagger$} & \multicolumn{1}{r}{95$^\ddagger$} & \multicolumn{1}{r}{135$^\ddagger$} & \multicolumn{1}{r|}{171$^\ddagger$} & total reviews$^\ddagger$  \\  \cline{2-9}
+
+            & Foursquare  & \multicolumn{1}{r}{33} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r|}{12000$^\mathsection$} & total checkins$^\mathsection$  \\\cline{1-9}
+
+            % & Ridesharing  & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{208} & \multicolumn{1}{r}{272} & \multicolumn{1}{r}{338} & \multicolumn{1}{r|}{2} & Active  \\\cline{1-9}
+
+\multirow{1}{*}{\begin{tabular}{@{}l@{}}Bookmarking \end{tabular}} &    Pinterest      & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{5} & \multicolumn{1}{r}{13} & \multicolumn{1}{r}{--} & \multicolumn{1}{r}{--} & \multicolumn{1}{r|}{--} & pins  \\  \cline{1-9}
+
+        \end{tabular}
+    \end{adjustbox}
+    % \vspace{ + 15 mm}
+}
+    \label{table:media_units}
+\end{table}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

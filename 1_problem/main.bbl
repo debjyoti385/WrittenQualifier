@@ -1,3 +1,88 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{10}
+
+\bibitem{aichner2015measuring}
+T.~Aichner and F.~Jacob.
+\newblock Measuring the degree of corporate social media use.
+\newblock {\em International Journal of Market Research}, 57(2):257--276, 2015.
+
+\bibitem{facebook_support}
+DataCenterKnowledge.
+\newblock Data center knowledge, facebook builds new exabyte data center, 2018.
+\newblock
+  https://www.datacenterknowledge.com/archives/2013/01/18/facebook-builds-new-data-centers-for-cold-storage
+  , Online; accessed 27-Nov-2018.
+
+\bibitem{dayarathna2016data}
+M.~Dayarathna, Y.~Wen, and R.~Fan.
+\newblock Data center energy consumption modeling: A survey.
+\newblock {\em IEEE Communications Surveys \& Tutorials}, 18(1):732--794, 2016.
+
+\bibitem{domo}
+Domo.
+\newblock Domo, 2018.
+\newblock [Online; accessed 27-Nov-2018].
+
+\bibitem{expandedramblings}
+ExpandedRamblings.
+\newblock Expanded ramblings, 2018.
+\newblock
+  \href{https://expandedramblings.com}{https://expandedramblings.com},[Online;
+  accessed 27-Nov-2018].
+
+\bibitem{frachtenberg2011high}
+E.~Frachtenberg, A.~Heydari, H.~Li, A.~Michael, J.~Na, A.~Nisbet, and P.~Sarti.
+\newblock High-efficiency server design.
+\newblock In {\em Proceedings of 2011 International Conference for High
+  Performance Computing, Networking, Storage and Analysis}, page~27. ACM, 2011.
+
+\bibitem{info2007top}
+I.-T.~R. Group et~al.
+\newblock Top 10 energy-saving tips for a greener data center.
+\newblock {\em Info-Tech Research Group. 連結}, 2007.
+
+\bibitem{youtube_stats}
+jdownloader.
+\newblock Youtube jdownloader, 2018.
+\newblock http://i.imgur.com/CgX5t.png, Online; accessed 27-Nov-2018.
+
+\bibitem{kaplan2010users}
+A.~M. Kaplan and M.~Haenlein.
+\newblock Users of the world, unite! the challenges and opportunities of social
+  media.
+\newblock {\em Business horizons}, 53(1):59--68, 2010.
+
+\bibitem{kietzmann2011social}
+J.~H. Kietzmann, K.~Hermkens, I.~P. McCarthy, and B.~S. Silvestre.
+\newblock Social media? get serious! understanding the functional building
+  blocks of social media.
+\newblock {\em Business horizons}, 54(3):241--251, 2011.
+
+\bibitem{sina_weibo_stats}
+NetImperative.
+\newblock Sina weibo overtakes twitter user numbers, 2018.
+\newblock [Online; accessed 27-Nov-2018].
+
+\bibitem{gamestatista}
+Statista.
+\newblock Most popular games in us, 2018.
+\newblock
+  \href{https://www.statista.com/statistics/580150/most-popular-us-gaming-apps-ranked-by-audience/}{https://www.statista.com/statistics/580150/most-popular-us-gaming-apps-ranked-by-audience/},
+  [Online; accessed 27-Nov-2018].
+
+\bibitem{statista}
+Statista.
+\newblock Statista, 2018.
+\newblock \href{https://www.statista.com}{https://www.statista.com},[Online;
+  accessed 27-Nov-2018].
+
+\bibitem{tweets_images}
+Thenextweb.
+\newblock Next web, 2018.
+\newblock [Online; accessed 27-Nov-2018].
+
+\bibitem{zephoria}
+Zephoria.
+\newblock Facebook statistics, 2018.
+\newblock [Online; accessed 27-Nov-2018].
 
 \end{thebibliography}
