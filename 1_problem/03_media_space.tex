@@ -21,6 +21,11 @@ video in 1080p and it stores video in multiple resolution such as 240p, 360p, 72
 Similar to the method above we can find the space required to store a tweet. A tweet is stored in Twitter as UTF-8 format. This takes 140 characters tweets atmost 560 bytes of space. However the metadata attached with a tweet is much more than the tweet itself. I personally did a random sample experiment of 100K tweets stord in our databases to find the average storage space for tweet json object obtained from streaming api. I find one json tweet object takes 3247 bytes of space in average.
 682 million tweets per day will require around 2.2145 terabytes of data per day. Using the interpolation method for area under the curve we can find that Twitter use 3.13 petabyte of space for storing the tweet alone. It is also worth noting that 42\% of tweets contains images \cite{tweets_images}. If we assume the average image size be 100 KB then we will see $(100 * 1024)/3247 * 42 \% \approx 13.2$ times increase in storage space requirement.
 
+\begin{figure}[t]
+	\includegraphics[width=0.7\linewidth ]{fig/energy_usage.png}
+    \vspace{-2mm}
+    \caption{A typical breakdown of energy usage among components in data center \cite{info2007top}.}
+\end{figure}
 
 \Paragraph{2. Storage space estimate from data center power usage:}
 This section presents an approximate method to estimate space capacity of large social media companies like Facebook and Google.
