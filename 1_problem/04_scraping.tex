@@ -1,25 +1,37 @@
 \section{Part B.}
-Open source projects on API libraries available in Github and other collaborative platforms enables researchers to collect data from above mentioned social sites. Social media data is broadly divided into
- % \cite{batrinca2015social} :
-\begin{itemize}
-  \item {\em Historic data sets:} Previously accumulated and stored social/news, financial and economic data.
-  \item {\em Realtime feeds:} Live data feeds from streamed social media, news services, financial exchanges, telecom services, GPS devices and speech.
-\end{itemize}
-
-Historical datasets are relatively easy to collect than real-time feeds.
-
 \subsection*{Scraping Social Media:}
+Social media data is broadly divided into
+ \cite{batrinca2015social} :\\
+{\em1. Historic datasets:} Previously accumulated and stored social/news, financial and economic data. \\
+{\em2. Realtime feeds:} Live data feeds from streamed social media, news services, financial exchanges, telecom services, GPS devices and speech.
+
+Historical datasets are relatively easy to collect than real-time feeds because of API limitation and limitation of scraping via crawling webpages. Social media data is mainly collected via two procedure API based or web crawling based approach. API crawling methods are easy to maintain and modifiable. Web crawling based approach can extract more information which might not be available via APIs. Also web crawling can avoid API rate limit and can crawl more data. But it needs data clean up and high maintenance because the web interface can change quickly which result in change of code and crawling procedure.
+
+Open source projects on API libraries available in Github and other collaborative platforms enables researchers to collect data e.g. tweepy for Twitter, pyFacebook, python-flickr, foursquare-api, uberpy, python-vimeo, youtube-api etc. (all available in Github.) A comprehensive list of api wrappers can be obtained from here \cite{api_wrappers}.
+
+Due to the imposed restriction of APIs crawling technolgies have evolved rapidly. Few state-of-the-art crawling libraries and utilities are scrapy \footnote{\href{https://github.com/scrapy/scrapy}{github.com/scrapy/scrapy}}, beatifulSoup4 \footnote{\href{https://github.com/il-vladislav/BeautifulSoup4}{github.com/il-vladislav/BeautifulSoup4}}, selenium \footnote{\href{https://pypi.org/project/selenium/}{pypi.org/project/selenium/}}, Graphene \footnote{\href{https://graphene-python.org/}{graphene-python.org/}}.
+
 
 \subsection*{Difficulties in Scraping:}
-\paragraph{Non availability of good free APIs:}
+In this section, we present comprehensive list of the challenges researchers face while scraping social media data.
 
-\paragraph{API call limit:}
+\paragraph{Lack of free APIs:} Many social media sites does not expose relevant APIs for free. They are mostly paid APIs and are costly.
 
+\paragraph{API call limit:} API call limit is the most discouraging element for scraping social media data. Sometimes they even show erratic behavior even if the scraper have not reached documented rate limit e.g. foursquare APIs.
 
-\paragraph{Scraping Technology, Javascript enabled data:}
+\paragraph{Javascript enabled data:}
+Researchers resorted to web crawling face this challenge when the data is fetch via javascript calls and simple web crawling will not work. This kind of scenario needs expertise and technologies. Using libraries like scrapy with plugin splash (scriptable browser) \footnote{\href{https://github.com/scrapy-plugins/scrapy-splash}{github.com/scrapy-plugins/scrapy-splash}} is the only best method known to researchers. But it slows down scraping process.
+
+\paragraph{IP block:}
+Web crawling often result in IP block. Only a well resourced researcher can avoid it by charging IP addresses often through proxy services. But sometimes social media sites can even detect proxies and limit access.
 
 \paragraph{Legal Terms and Conditions:}
-
-\paragraph{IP block while scraping:}
+Web crawling sometimes violate the legal terms and conditions from social media sites. Even if a researcher gets the data by crawling he/she might not be able to publish the data or share with other researchers.
 
 \paragraph{Missing link metadata: }
+It is often found that data exposed either in API or in Webpages miss link metadata. Link metadata are information like followers which reduce usability of such data.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
