@@ -1,0 +1,166 @@
+\subsection{Calculate surge time series }
+To answer $\mathbb{Q}1_{w,[start,end]}$ and $\mathbb{Q}2_{[start,end],\gamma}$,
+it is essential to reconstruct the time series of occurrences of events.  PCMS
+contains all the information to build surge $s_{t,\tau}$ and then burstiness
+$b_{t,\tau}$ time series.  In $\mathbb{Q}1_{w,[start,end]}$ we first
+reconstruct surge time series from PCMS with Algorithm \ref{algo:query1approach1}. 
+
+Figure \ref{fig:Q1} shows an example with some entries. As mentioned
+earlier the values entered in BurstsPCMS are always greater than 1 which is the
+fraction of $c_{t,w}/n_w$. This staircase curve persisted in \emph{BurstsPCMS}
+can be transformed to $s_{t,\tau}$ without difficulty. 
+
+According to the definition of $s_{t,\tau}$ in equation \ref{eq:1}, we can
+calculate it with $$s_{t,\tau_e} = \alpha(t) s_{t_{i-1}, \tau_e} + (1-
+\alphastar) \frac{1}{\tau_e} $$ when we find an occurrences of event $e$ at
+$t$.
+
+In \emph{BurstsPCMS} we insert an entry of $w$ only when we find at least $n_w$
+occurrences happened in $\tau$ time. Hence, the above equation is used in
+calculating surge. It can also be easily noticed that this is a recurrence
+relation. We find that this recurrence relation can easily be unwind to
+calculate surge for any fraction/times of $n_w$ occurrences happened in $\tau$ time. 
+
+In  \emph{BurstsPCMS} the fraction
+$c_{t,w}/n_w$ is exactly the ratio of average inter-event gap for
+the $[t-\tau,t]$ interval and lets denote it as $c$. Hence for  $c_{t,w}$
+number of occurrences in interval $[t-\tau,t]$; surge $s_{t,\tau_w}$ can be
+directly calculated with equation \ref{eq:bulksurge}.  
+
+As mentioned earlier $\alpha(t) = e^{-\frac{t_i-t_{i-1}}{\nu}}$ 
+is time variant function. $\alpha(t)$ for $c_{t,w}$ occurrences in $\tau$ interval becomes 
+
+$$\alpha(t) =  e^{-\frac{n_w}{c_{t,w}}} = e^{-\frac{1}{c}}$$ 
+It should be noted that $-\frac{1}{c}$ is a constant say $c'$ for the time range $[t,t+\tau]$.
+Also $(1-\alphastar) \frac{1}{\tau}$ is also a constant say $k$.  Hence by
+expanding the recurrence relation of $s_{t,\tau}$, we get the following which
+helps in calculating surge metric easily in Algorithm
+\ref{algo:query1approach1}.  
+
+
+\begin{equation}
+\label{eq:bulksurge}
+        \begin{split}
+                s_{t,\tau} &= e^{c'} s_{t-1,\tau} + k \\
+                           &= e^{c'} (e^{c'} s_{t-2,\tau} +k ) + k \\
+                           &= e^{2c'} s_{t-2,\tau} + e^{c'}k + k \\
+                           &= e^{n_wc'} s_{t-\tau,\tau} + e^{(n_w-1)c'}k + e^{(n_w-2)}k + \ldots + e^{c'}k + k \\
+                           &= e^{n_wc'} s_{t-\tau,\tau} + k (e^{(n_w-1)c'} + e^{(n_w-2)c'}+ \ldots + e^{c'} +1)\\
+                           &= e^{n_wc'} s_{t-\tau,\tau} + k \frac{1}{1-e^{c'}} ~~~~~~~~~~~~~~~~ [\because  1 < c' < 1 ]\\
+                s_{t,\tau} &= e^{-\frac{n_w}{c}} s_{t-\tau,\tau} + (1-\alphastar)\frac{1}{\tau} \frac{1}{1-e^{-\frac{1}{c}}} \\
+        \end{split}
+\end{equation}
+
+\begin{algorithm}
+        \caption{\emph{$\mathbb{Q}1_{w,[start,end]}$ }}
+        \label{algo:query1approach1}
+\begin{algorithmic} 
+\REQUIRE $w, start, end$ where $end > start$ 
+\ENSURE $s_{t,\tau}, b_{t,\tau_w}$ time series
+\STATE
+\STATE Initialize $s_{t,\tau},b_{t,\tau}$ list.
+\STATE $lastvalue \leftarrow$ \emph{BurstsPCMS.getCount($w,start$)}
+\FOR {$t$ in $start$ to $end$ }
+\STATE $val \leftarrow$ \emph{BurstPCMS.getCount(w,t)}
+        \IF{ $val > lastvalue$}
+        \STATE $interval \leftarrow \tau$
+        \STATE \texttt{\# Find if there is any other increase}
+        \STATE \texttt{\# in $[t,t+\tau]$ range }
+                \IF {\emph{BurstsPCMS.getCount}($w,t+\tau$) $> val$}
+                \FOR{$i$ in 1 to $\tau$ }
+                \IF{\emph{BurstsPCMS.getCount}($w,t+i,t+\tau$) $> n$ }
+                        \STATE $interval \leftarrow i$
+                        \STATE break
+                        \ENDIF
+                \ENDFOR
+                \ENDIF
+                \STATE $c \leftarrow val - lastvalue$
+                \STATE Calculate $s_{t,\tau}$ with $-\frac{1}{c}$ as $c'$ and $interval$ as $n_w$ in equation \ref{eq:bulksurge}.  
+                \STATE $lastvalue \leftarrow val$
+                \STATE Calculate $b_{t,tau}$ from $s_{t,\tau}$ from interval $[t-\tau,t]$
+        \ENDIF
+\ENDFOR
+\STATE return $s_{t,\tau}$, $b_{t,\tau}$ time series. 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{figure}[!t]
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{fig/Q1.png} 
+        \vspace{-8mm}
+        \caption{$\mathbb{Q}1$ example with staircase curve}\vspace{10mm}
+        \label{fig:Q1}
+    \end{minipage}
+    \hfill\
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \vspace{-12mm}
+        \includegraphics[width=\textwidth]{fig/s_vs_c.eps}
+        \vspace{-8mm}
+        \caption{Relation between $c$ and $s_{t, \tau}$}
+        \label{fig:s_vs_c}
+    \end{minipage}
+\end{figure}
+
+From example in Figure \ref{fig:Q1}, we can see that there are four increasing
+segments within range $[start,end]$. The first segment or staircase $a$ does
+not have another increasing segment within $+\tau$ time. Hence the $s_{t,\tau}$
+is calculated for the full $\tau$ segment. For the later case segment  $b,c$
+is overlapping within $\tau$ time. Hence $s_{t,\tau}$ is calculated for the
+segment $b$ till the starting point of segment $c$, and for segment $c$ it is
+calculated for $\tau$ time. 
+
+
+For query $\mathbb{Q}2_{[start,end],\gamma}$, we use heavy-hitter queries. Heavy
+hitters query is simpler in this case. Recall that we insert a word into
+the PCMS only when it is bursty. Therefore, we can use heavy hitters query of
+PCMS to find bursty words within a given range. We can even specify a threshold
+that how much times of \emph{burstiness} we want to filter out.
+
+Suppose we want to find the words with burstiness 3 times the normal value. For
+3 times $b_{t,\tau}$ the $s_{t,\tau}$ will also be three times. Since we know
+that $b_{t,\tau}$ is the area under the curve of $s_{t,\tau}$ for $\tau$ interval
+and it only triples iff $s_{t,\tau}$ triples. Hence, we have a direct relation
+of $b_{t,\tau}$ with $s_{t,\tau}$. We also claim that there is a relation of $c$
+with $s_{t,\tau}$ which helps in estimating $\gamma$ threshold. 
+
+From equation \ref{eq:bulksurge} we can directly plot the relation of
+$s_{t,\tau}$ with $c$ while keeping other parameters constant. The plot in
+figure \ref{fig:s_vs_c} depicts the relation of threshold $\gamma$ or $c$ with $s_{t,\tau}$. With
+a known $\gamma$ the problem statement boils down to retrieve the heavy
+hitters.
+
+To be able to efficiently identify the heavy hitters,
+we use the dyadic range sum technique of PCMS to decompose
+the universe $U$. More precisely, a dyadic range at level $l$
+is an interval of the form $[j2^l+1, (j+1)2^l)$ for $l=0, \dots, \log|U|$
+and $j=0, \dots, n/2^l-1$. For a particular level $l$, we divide the universe
+into $n/2^l$ dyadic ranges, each of size $2^l$, and use a PCMS to
+track total frequency of elements in every
+dyadic range. Thus we maintain $\log(n+1)$ PCMS in total.
+ When an update $(i, c)$ arrives, in each level, we
+find the dyadic interval that contains $i$, and update the corresponding
+counters.
+
+In order to find all heavy hitters, we ask point queries on the
+$\log(n + 1)$ levels recursively. More precisely, suppose at level $l$ we
+have identified at most $1/\phi$ heavy dyadic ranges. These ranges are split into $2/\phi$
+dyadic ranges in level $l+1$. Then at level $l+1$, we ask point queries on these
+$2/\phi$ heavy dyadic ranges to identify again at most $1/\phi$ heavy dyadic
+ranges. We repeat this process until we find all heavy hitters at
+level 0, which are returned as the estimated heavy hitters.
+
+\begin{algorithm}
+        \caption{\emph{$\mathbb{Q}2_{[start,end],\phi}$ }}
+        \label{algo:hhapproach1}
+\begin{algorithmic} 
+\REQUIRE $start, end$ where $end > start$ and threshold $\phi>1$
+    \ENSURE $W=\{w_1, \cdots, w_n\}$
+\STATE
+\STATE return $BurstsPCMS.getHeavyHitters(\phi, start, end)$.
+\end{algorithmic}
+\end{algorithm}
+
+
+
