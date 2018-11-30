@@ -1,8 +1,8 @@
 all: compile1 compile2 merge
 
 1: compile1 merge
-	
-2: compile1 merge
+
+2: compile2 merge
 
 compile1:
 	cd 1_problem  && 	pdflatex -shell-escape main.tex
