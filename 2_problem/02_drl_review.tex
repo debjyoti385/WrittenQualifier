@@ -28,7 +28,7 @@ A reward $r_t$ is a scalar feedback signal that indicates how well {\em agent} i
 
 An example of  {\em reward} in the case of flying toy robot helicopters are : (a) $+$ve reward for following desired trajectory, (b) $−$ve reward for crashing.
 
-\definition{\em History:} The history $\mathcal{H}_t$ is the sequence of observations, actions, rewards, i.e. all observable variables up to time $t$. Mathematically, $\mathcal{H}_t = \omega_1,r_1,a_1,\ldots,a_{t−1},\omega_t,r_t$.
+\definition{\em History:} The history $\mathcal{H}_t$ is the sequence of observations, actions, rewards, i.e. all observable variables up to time $t$. Mathematically, $\mathcal{H}_t = \omega_1,r_1,a_1,\ldots,a_{t-1},\omega_t,r_t$.
 
 Formally, state $s_t \in \mathcal{S}$ is a function of the history $\mathcal{H}_t$.
 $$s_t = f(\mathcal{H}_t)$$
@@ -59,7 +59,9 @@ looking at the full history.
 
 However, in the real world not many sytems are fully observable, an {\em agent} indirectly observes the environment without knowing it's internal information state. In this scenario $s_t^a \neq s^e_t$.
 
-Formally this is a partially observable Markov decision process (POMDP).
+
+
+Formally this is a partially observable Markov decision process (POMDP) illustrated in Figure \ref{fig:pomdp}.
 \vspace{5mm}
 \Paragraph{Partially Observable Markov Decision Process (POMDP):}
 A POMDP is a 7-tuple $(\mathcal{S}, \mathcal{A}, T, \mathcal{R}, \Omega, O, \gamma)$ where
@@ -79,6 +81,13 @@ In a POMDP {\em agent} must construct its own state representation $s_t^a$. For 
 (i) \textbf{Complete history:} $s_t^a = \mathcal{H}_t$.\\
 (ii) \textbf{{\em Beliefs} of environment state:} $s_t^a = \mathbb{P}[s_t^e = s^1],\ldots,\mathbb{P}[s_t^e = s^n]$ where $s^k$ represents a state in environment.\\
 (iii) \textbf{Recurrent Neural Network (RNN)}: $s_t^a = \sigma(s_{t-1}^a W_s + \omega_t W_o)$ where $W_s$ and $W_o$ represents weight vectors and $\sigma$ some non linear function. \cite{wierstra2010recurrent, hausknecht2015deep, heess2015memory}.
+
+\begin{figure}[t]
+	\includegraphics[width=0.9\linewidth ]{fig/pomdp.png}
+    \vspace{-2mm}
+    \caption{Partial Observed Markov Decision Process (POMDP).}
+    \label{fig:pomdp}
+\end{figure}
 
 This RNN approach to solving
 POMDPs is related to other problems using dynamical systems
@@ -142,6 +151,61 @@ Although
 deep neural networks can potentially produce very complex
 and rich models \cite{oh2015action, finn2016deep}, sometimes simpler, more data efficient
 methods are preferable \cite{gu2016continuous}.
+
+\subsection*{Deep RL (DRL):}
+Traditional RL works was mainly on low dimentional problems (i.e. few state space, limited actions etc.). Integration of deep neural network with RL framework bolster the framework, by converting higher dimentional problems into low dimentional representations. Initial DRL works was mainly involved on scaling up prior work in RL to high dimensional problems.
+DRL can deal
+efficiently with the curse of dimensionality, unlike tabular and
+traditional non-parametric methods \cite{bengio2013representation}.
+
+In DRL, deep neural network is trained to model/predict one or more of (a) the optimal value functions $V^\pi(s)$ (b) optimal policy $\pi(s)$
+(c) optimal quality function $Q^*$ (d) optimal actions $\mathcal{A}^*$.
+
+Many works on DRL is based on gradient based backpropagation algorithm \cite{heess2015learning, schulman2015gradient, rumelhart1985learning} which models the optimisation
+of the expected return as the optimisation of a
+stochastic function.
+
+This stochastic function can have one or more
+models, policies and value functions combined in various ways.
+Each individual component might not directly optimise the expected reward but can incorporate useful information to optimize reward as a whole.
+For example, a DRL using a differentiable model and policy,
+it is possible to forward propagate and backpropagate through
+entire episodes; and policy component can learn the information over the history. Both can be summarized with a value functions for optimizing reward \cite{heess2015learning}.
+
+To present a concrete example of how a traditional RL network is extended to a DRL, I will present a value-function-based DRL algorithms
+with the DQN in Figure \ref{fig:dqn}.
+Q-functions learns action-value function. In a traditional RL problem, a Q-learning function create and update a Q-table to find the maximum expected future reward of an action, given a current state. The model takes greyscale images as state from the video game; with the input current state Q-table returns with actions. It is a good strategy but it is not scalable.
+
+On the other hand, the DQN takes the state-a stack of greyscale frames from the video game-and processes it with convolutional and
+fully connected layers, with ReLU nonlinearities in between each layer. At the final layer, the network outputs a discrete action, which corresponds to one of the possible control inputs for the game.  Given the current state and chosen action, the game returns a new score.
+The DQN uses the reward-the difference
+between the new score and the previous one-to learn from its decision. More precisely, the reward is used to update its estimate of Q, and the error between its previous estimate and its new estimate is backpropagated through the network.
+
+\begin{figure}[t]
+	\includegraphics[width=0.95\linewidth ]{fig/dqn.png}
+    \vspace{-2mm}
+    \caption{Q-learning RL (above) and DQN (below) \cite{mnih2015human}.}
+    \label{fig:dqn}
+\end{figure}
+
+\subsection*{Current Research Challenges:}
+In this section, I present some of the research challenges in Deep Reinforcement Learning process.
+\paragraph{Exploration vs Exploitation:}
+Online decision making involves a fundamental choice {\em (i) Exploitation} or {\em (ii) Exploration}. Exploitation refers to make the best decision with the current information gathered by agent. Whereas exploration involves attempting new action for more information. This is also known as {\em exploitation-exploration} dilemma. The best long-term strategy may involve lot of exploration and short term sacrifices. On the other hand if the agent have already found best strategy exploration may reduced the rewards.
+
+\paragraph{Transfer Learning:}
+Transfer learning is about efficiently using previous knowledge from a
+source environment to achieve new (slightly) different tasks in a target environment. To achieve this agent must develop generalization capabilities such as {\em (i) feature selection (ii) removing asymptotic bias (iii) reduce overfitting and function approximator (iv) Optimizing horizon} (length of observations history involved in decision making process) etc.
+
+\paragraph{Learning without explicit reward function:}
+In reinforcement learning, the reward function defines the goals to
+be achieved by the agent. Due to the complexity of the environments in practical
+applications, defining a reward function can turn out to be rather
+complicated. Approaches like {\em imitation learning} (supervised learning) and {\em inverse reinforcement learning} where agent determines possible reward functions given observations of optimal behavior, are research challenges for next decade.
+
+
+
+
 
 %%% Local Variables:
 %%% mode: latex
