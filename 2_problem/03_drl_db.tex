@@ -1,5 +1,35 @@
-\section{Part B.}
+\section{Part B.  Self Instructing Database:}
 \label{part_b}
+\subsection{Overview:}
+Any standard database has considerable large number of configuration knobs. Databases needs to be tweaked with proper configuration for running efficiently with different workloads and hardware resources. Tweaking database configuration knowbs needs a great level of expertise from database administrator (DBA) because optimal configuration varies with the type of worloads. Beside that even finding optimal knob configurations might involve trial and error process for a DBA (which restrits the search spaces for knobs). An auto-configuring database system or self intructing database is a desirable feature to demand from database companies.
+
+
+Human database administrators rely on experience and intuition to configure it. DRL process mimick same learning strategies i.e. learn from mistakes and correctness to maximize future rewards. Keeping this in mind we can explore how DRL can provide a solution automatic database tuning.
+
+
+\subsection{Problem Formulation:}
+Given a workload $\mathcal{W}$ with a knobs setting $\mathcal{C} = \{c_1,c_2,\ldots,c_{|\mathcal{C}|}\}$ a typical database outputs a log of metrics $\mathcal{M} = \{m_1,m_2,m_3,\ldots,m_{|\mathcal{M}|}\}$ as shown in Figure \ref{fig:database_01}.
+
+\begin{figure}[h]
+	\includegraphics[width=0.9\linewidth ]{fig/database_01.png}
+    \vspace{-2mm}
+    \caption{A typical database system.}
+    \label{fig:database_01}
+\end{figure}
+
+The database keeps receiving workloads at some discreet interval of time and it runs with some configuration and outputs a metric log, which is also called a discrete time stochastic control process.
+We can model this process into a RL agent-database environment interaction process as shown in Figure \ref{fig:database_agent}.
+In this process, at each time step $t$ we map metric $\mathcal{M}_t$ to rewards $r_t$. Similarly, workload $\mathcal{W}_t$ can be mapped to observation/state $\omega_t$ or $s_t$. (These notations are defined in Section \ref{formal_rl}).
+
+
+
+\begin{figure}[t]
+	\includegraphics[width=0.9\linewidth ]{fig/database_agent.png}
+    \vspace{-2mm}
+    \caption{RL Agent-Database Environment Interaction.}
+    \label{fig:database_agent}
+\end{figure}
+
 
 \subsection*{Multi-agent Deep RL:}
 

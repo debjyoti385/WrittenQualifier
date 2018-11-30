@@ -5,7 +5,8 @@ Traditional Reinforcement Learning
 requires explicit design of state space and action space, while the mapping from state space to action space is learned \cite{sutton1998introduction}.
  That makes the problem spaces and the possible states in an environment very limited, only with fully observable state of environment for agent.  Neural networks enhances RL with the capability to make the agent learn a state abstraction and a policy approximation directly from its input data in a partially observable environment. Deep RL is the fruitful outcome of this attempt of RL enhancement.
 
-\subsection*{Formal RL Framework:}
+\subsection{Formal RL Framework:}
+\label{formal_rl}
 The general RL problem is formalized as a discrete time stochastic
 control process where an agent interacts with its environment in the
 following way: the agent starts, in a given state within its environment
@@ -95,7 +96,7 @@ and state space models, where the true state can only be
 estimated \cite{bertsekas2005dynamic}.
 
 
-\subsection*{RL Agent Components:}
+\subsection{RL Agent Components:}
 So far, we have introduced the key formalism used in RL,
 the MDP and the POMDP. Now I will talk about what is inside an RL agent and the components it uses for learning. An RL agent may include one or more of these component for learning.\\
 \Paragraph{\em Value functions:}
@@ -123,7 +124,7 @@ where $s$ is the state prior state and $s'$ is the resultant state on action $a$
 $$\mathcal{R}^a_s = \mathbb{E}[r|\mathcal{S}=s,\mathcal{A}=a]$$
 where $s$ is the state prior state and $r$ is the reward for next step on action $a$.
 
-\subsection*{RL Agent Taxonomy:}
+\subsection{RL Agent Taxonomy:}
 Model methods are optional in RL systems. In fact there are many model free based methods applied for real world problems. To understand a comprehensive taxonomies of categorizing RL Agent we present it in Figure \ref{fig:taxonomy}.
 
 \begin{figure}[t]
@@ -152,7 +153,7 @@ deep neural networks can potentially produce very complex
 and rich models \cite{oh2015action, finn2016deep}, sometimes simpler, more data efficient
 methods are preferable \cite{gu2016continuous}.
 
-\subsection*{Deep RL (DRL):}
+\subsection{Deep Reinforcement Learning (DRL):}
 Traditional RL works was mainly on low dimentional problems (i.e. few state space, limited actions etc.). Integration of deep neural network with RL framework bolster the framework, by converting higher dimentional problems into low dimentional representations. Initial DRL works was mainly involved on scaling up prior work in RL to high dimensional problems.
 DRL can deal
 efficiently with the curse of dimensionality, unlike tabular and
@@ -188,7 +189,7 @@ between the new score and the previous one-to learn from its decision. More prec
     \label{fig:dqn}
 \end{figure}
 
-\subsection*{Current Research Challenges:}
+\subsection{Current Research Challenges:}
 In this section, I present some of the research challenges in Deep Reinforcement Learning process.
 \paragraph{Exploration vs Exploitation:}
 Online decision making involves a fundamental choice {\em (i) Exploitation} or {\em (ii) Exploration}. Exploitation refers to make the best decision with the current information gathered by agent. Whereas exploration involves attempting new action for more information. This is also known as {\em exploitation-exploration} dilemma. The best long-term strategy may involve lot of exploration and short term sacrifices. On the other hand if the agent have already found best strategy exploration may reduced the rewards.
