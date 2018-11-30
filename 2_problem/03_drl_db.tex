@@ -19,7 +19,7 @@ Given a workload $\mathcal{W}$ with a knobs setting $\mathcal{C} = \{c_1,c_2,\ld
 
 The database keeps receiving workloads at some discreet interval of time and it runs with some configuration and outputs a metric log, which is also called a discrete time stochastic control process.
 We can model this process into a RL agent-database environment interaction process as shown in Figure \ref{fig:database_agent}.
-In this process, at each time step $t$ we map metric $\mathcal{M}_t$ to rewards $r_t$. Similarly, workload $\mathcal{W}_t$ can be mapped to observation/state $\omega_t$ or $s_t$. (These notations are defined in Section \ref{formal_rl}).
+In this process, at each time step $t$ we map metric $\mathcal{M}_t$ to rewards $r_t$. Similarly, workload $\mathcal{W}_t$ is mapped to observation/state $\omega_t$ or $s_t$, and configuration $C_t$ is mapped to action $a_t$. (These notations are defined in Section \ref{formal_rl}).
 
 
 

@@ -15,7 +15,7 @@ compile2:
 	cd 2_problem  && pdflatex -shell-escape main.tex
 
 merge:
-	pdftk 1_problem/01_question.pdf 1_problem/main.pdf 2_problem/02_question.pdf 2_problem/main.pdf cat output final.pdf
+	pdftk 1_problem/01_question.pdf 1_problem/main.pdf 2_problem/02_question.pdf 2_problem/main.pdf 3_problem/03_question.pdf cat output final.pdf
 
 clean:
 	rm -f final.pdf
