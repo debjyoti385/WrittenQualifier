@@ -1,4 +1,4 @@
-\section{Part A: Spatio-Temporal Analytics System Architecture for Health Analysis:}
+\section{Part A: System Architecture  Spatio-Temporal Analysis for Health Analysis:}
 \label{part_a}
 A comprehensive system for spatio-temporal analysis requires the following components which can be braodly categorized based on their operations:
 % \vspace{-4mm}
@@ -41,6 +41,17 @@ A comprehensive system for spatio-temporal analysis requires the following compo
     \end{itemize}
     }
 \end{itemize}
+
+In the follwong part I will throw some light on each component and discuss about challenges if they have any.
+
+\subsection{Data Ingestion}
+\Paragraph{Data Collection Module:}
+Twitter is biggest social media data source for researchers. Twitter's 1\% sample data stream API is the most common approach for data collection. Twitter statistics reveals that only 0.85\% of tweets in the stream is geotagged \cite{sloan2013knowing} which is significantly lower. Utmost effort and care should be taken to collect more geotagged data. Twitter's location based API should be used for such purpose.
+
+\paragraph{Challenges:}
+Collecting data from location based API or any other keyword based search API are restrictive in nature with request limit per hour.
+Evading this problem might be challenging with limit resources. Multiple number of data collection servers collecting mutually exclusive geographical region can help to collect more geotagged data. For some social media sites it is almost necessary to use proxy network to avoid IP block.
+
 
 
 
