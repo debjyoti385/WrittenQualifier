@@ -59,7 +59,7 @@ properties of the learning process like the number of iterations.
 \end{figure}
 
 
-\subsection*{Training and Prediction:}
+\subsection*{Training and Challenges:}
 With the high level components defined, now we will go through the workflow of learner.
 Assuming the {\em neural network agent (NNA) } is configured with required hyperparamters, the learning process starts with time $t=0$.
 First, a workload $\mathcal{W}_t = s_t$  is feed into {\em neural network agent} (NNA). Then, the NNA explore action set $\mathcal{A}$ to produce an action (configuration) $a_t = \mathcal{C}_t$. The database environment on receiving action configuration $\mathcal{C}_t$ executes workload $\mathcal{W}_t$ and returns with metrics $\mathcal{M}_t$. Some function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ converts metric to scalar reward. This process is repeated many times and agents either explore action set or exploit learned optimal action to predict next best configuration. The desired goal is to optimize maximum cumulative positive rewards.
@@ -81,7 +81,29 @@ These techniques can help in avoiding selection of $f$ by considering specific s
 \paragraph{Model based/Model-free Agent:}
 Model-free and model based both type of agent can be frutiful in this type of scenario. However model based approach needs more effort in design.
 The advantage of model based approach is that it can learn strategies to trade-off exploration and eploitation to learn quickly.
-But it is non-arguably plausible to choose gradient based methods because configurations knobs tend to have convex properties. 
+But it is non-arguably plausible to choose gradient based methods because configurations knobs tend to have convex properties.
+Also selecting RL agent components such as {\em value functions, policy functions, actor-critic or model} is subjected to further experimentation with various hyperparameters (such as number of hidden layers, ReLU layers etc.).
+
+\paragraph{Transfer Learning:}
+It is essential for this type of system that a learned agents adapt to a new environment or new database.
+Transfer learning is only possible when the agent can obtain generalization in learning procedure.
+When the quality
+of the dataset increases, the risk of overfitting is lower and the learning
+algorithm can trust more the maximum likelihood model by looking
+into a larger policy class and less approximations.
+On the other hand, when the quality of the dataset is low, the learning algorithm should be
+cautious on being too confident about the maximum likelihood model
+and should favor more robust policies. Hence, the sampling technique to obtain a good coverage of sample space is important.
+
+
+\subsection{Conclusion:}
+In the Section \ref{part_b} I presented an overview of the DRL model for autonomous or self-instructing databases. The model proposed is the starting point which can be extended as required for experimentation.  Challenges remain have also been address in this small review.
+A detailed deep dive with workload characteristics/representation is needed independently for future work on autonomous databases.
+
+
+
+
+
 
 
 
