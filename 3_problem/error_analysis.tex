@@ -1,0 +1,100 @@
+\subsection{Error Analysis}
+\label{error_analysis}
+Here we present the error analysis for calculating burstyness with count-min sketch.
+
+$$s_{i,t,\tau} = \alpha s_{i,t_{i},\tau} + (1-\alpha) \frac{1}{\tau}$$ \hfill where $t_i <  t$\\
+The other way of representing exponential smoothing is,
+$$s_{i,t,\tau} = \sum_{k=1}^{t} \alpha (1-\alpha)^k s_{j,k,\tau}$$
+\hfill where $s_{i,1,\tau} = \frac{1}{\tau}$
+
+Let $\mathbb{P} =\{ i\neq j: h_x(i)=h_x(j)\}$ denotes the objects that collide with $i$ in the $x$th row ($x$ hash function). \\
+
+And we know,
+$$Pr[h_{x}(i)=h_{x}(j)] \leq \frac{1}{b}$$
+\hfill where $i \neq j$, $h_x$ is the $x$th hash function, $b$ is the number of buckets
+\\
+
+Introducing
+$Z_{x,i,t}$ be the overestimate of the bursts for $x$th row or $x$th hash function. If no other hash value of objects collides then $Z_{x,i,t}$ is equal to $s_{i,t,\tau}$ refer to equation \ref{eq1}.
+
+\begin{equation} \label{eq1}
+\begin{split}
+Z_{x,i,t} &= \sum_{k=1}^{t} \alpha (1-\alpha)^k s_{i,k,\tau}\\
+\\
+\end{split}
+\end{equation}
+
+
+\begin{equation} \label{eq2}
+\begin{split}
+Z_{x,i,t} &= \sum_{k=1}^{t}  \alpha (1-\alpha)^k s_{i,k,\tau} \\
+& + \sum_{k=1, j \in \mathbb{P}}^{t} \alpha (1-\alpha)^k s_{j,k,\tau}
+\\
+\end{split}
+\end{equation}
+
+Let $1_j$ is the indicator random variable that indicates whether or not $j$ collides with $i$ under hash $h_x$
+\[
+ 1_j = 
+\begin{cases}
+    1 & \text{if }  h_x(i) = h_x(j) \\
+    0 & \text{ otherwise} 
+\end{cases}
+\]
+\begin{equation} \label{eq3}
+\begin{split}
+Z_{x,i,t} & = s_{i,t,\tau} \\
+        & + \sum_{k=1, j \in \mathbb{P}}^{t} \alpha (1-\alpha)^k s_{j,k,\tau} * 1_{j}
+\end{split}
+\end{equation}
+
+We want to calculate the expected value of $Z_{x,i,t}$ i.e. $E(Z_{x.i,t})$, since surge values are limited to a constant and maximum additive value to surge for an event is $\frac{1}{\tau}$ we obtain following
+\begin{equation} \label{eq4}
+\begin{split}
+E[Z_{x,i,t}] &= s_{i,t,\tau} + \sum_{k=1, j \in \mathbb{P}}^{t} \alpha (1-\alpha)^k s_{j,k,\tau} * E[1_{j}] 
+\end{split}
+\end{equation}
+
+\begin{equation} \label{eq5}
+\begin{split}
+$$E[1_j] &= 1. Pr[1_j=1] + 0 . Pr[1_j=0] \\
+&= Pr[h_x(i)=h_x(j)] \leq \frac{1}{b}$$
+\end{split}
+\end{equation}
+
+Hence combining (\ref{eq4}) and (\ref{eq5}) gives
+\begin{equation} \label{eq6}
+\begin{split}
+E(Z_{x,i,t}) & \leq s_{i,t,\tau}  + \frac{1}{b} \sum_{k=1}^{t} \alpha (1-\alpha)^k s_{j,k,\tau} \\
+ & \leq s_{i,t,\tau} + \frac{m'}{b} \cdot \frac{1}{\tau} \\
+  & \leq s_{i,t,\tau} + \frac{m'}{b \cdot \tau} 
+\end{split}
+\end{equation}
+where $m'$ is the total number of occurance of event.\\ 
+
+
+Here the goal is to identify elements with surge value greater than $\psi - \epsilon \frac{m'}{\tau} $. If we take number of buckets $b$ equal to $\frac{1}{\epsilon}$ then (\ref{eq6}) says that expected additive error is at most $\epsilon \frac{m'}{\tau}$.\\
+
+We know from Markov's Inequality that $$\Pr[X > c \cdot E[X]] \leq \frac{1}{c}$$ where $X$ is a non-negative random variable and $c>1$ is a constant. \\
+
+Since our overestimate is always non-negative i.e.  $X = Z_{x,i,t} - s_{i,t,\tau}  \geq 0$ ,  we can apply Markov-Inequality with $E[X] = \epsilon \frac{m'}{\tau}$ \\
+$$Pr[X > c \cdot  \frac{m'}{b \cdot \tau}] \leq \frac{1}{c}$$
+Without loss of generality lets assume $c=e$, $b = \frac{e}{\epsilon}$, and $\frac{m'}{\tau} = m''$
+$$Pr[X > e \cdot \epsilon \frac{m''}{e}] \leq \frac{1}{e}$$
+$$Pr[Z_{x,i,t} > s_{i,t,\tau} + \epsilon m''] \leq \frac{1}{e}$$
+
+For $l$ number of hash function the hash function it will be 
+\begin{equation}
+\begin{split}\label{eq7}
+Pr &[ \min_{x=1}^{l} Z_{x,i,t} > s_{i,t,\tau} + \epsilon m''] \\
+&= \prod_{x=1}^{l} Pr[ Z_{x,i,t} > s_{i,t,\tau} + \epsilon m''] \\
+& \leq \frac{1}{e^l}
+\end{split}
+\end{equation}
+To achieve a target error probability of $\delta$ equation, (\ref{eq7}) need to be solved for a $l$. Hence much like the heavy hitters problem for frequency estimation with count-min sketch, small values of $l$ suffices surge estimation.
+
+\subsection{Error Analysis with persistent sketch}
+The error analysis for persistent sketch follows the same proposition discussed in \cite{wei2015persistent}. The surge estimation at a given time $t$ is prone to be overestimated is $\epsilon m''$.  \\
+For determinig burstiness at time $t$ we need surge measures between $s_{i,t-\tau,\tau}$ and $s_{t,t,\tau}$. The area under the curve of $s_{i,t,\tau}$ is $b_{i,t,\tau}$. The overestimate that happened at $t-\tau$ and $t$ won't be large enough, since $\tau$ the burstiness smoothing factor is usually small. The estimated burstiness will be increased only by the same factor. The overestimate in $[t-\tau,t) $ is neglligible. \\
+
+
