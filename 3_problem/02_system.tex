@@ -52,6 +52,17 @@ Twitter is biggest social media data source for researchers. Twitter's 1\% sampl
 Collecting data from location based API or any other keyword based search API are restrictive in nature with request limit per hour.
 Evading this problem might be challenging with limit resources. Multiple number of data collection servers collecting mutually exclusive geographical region can help to collect more geotagged data. For some social media sites it is almost necessary to use proxy network to avoid IP block.
 
+\subsection{Data Enrichment:}
+\Paragraph{Data Cleaning Module:}
+Data collected from social media often needs to be cleaned (e.g. tokenize, language filter etc.) for processing. The common scenarios for cleaning operations are {\em(i) filtering english tweets, (ii) removing emoticons (iii) keywords extraction etc. }
+
+\paragraph{Challenges:} There are many good tools for data cleaning. The main concerns are {\em(i) which library tools to use for desired result. (ii) the library should have high processing throughput}
+
+\Paragraph{Location Extraction Module}
+As mentioned earlier that percentage of geotagged tweet is not high. However, a lot of attempts have been made to predict the location of the tweet based on user activity and history.  Geotagging users is now a well studied problem and it has a median error of 6.38 km which might not be very significant for our analysis\cite{compton2014geotagging}.
+
+\paragraph{Challenges:}
+Need to collecting more data about users. If we are interested in home location of users then the above mentioned \cite{compton2014geotagging} technique is fine. However if we want the dynamic location as the users move or travel then it is a challenging problem.
 
 
 
