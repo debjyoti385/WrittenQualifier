@@ -109,12 +109,12 @@ AI Pro processing pipeline needs adapt new technologies and support them, this r
 
 \subsection{Analytics Processing Engine:}
 \Paragraph{Realtime Data Aggregation Support:}
-Enriched information stored in databases is ready to be analyzed by data scientist. Data scientists finds  statistical significant information by aggregating on different attributes which is termed as slicing and dicing in data analytics world. Realtime operation of slicing and dicing with spatio-temporal operation is hard to achieve. A work from our lab by Li et. al (XDB) addresses this problem with online aggregation \cite{li2017wander}. Furthermore, spatial join operations are costly and it demans powerful resources. Another work from our lab Xie et al. integrated {\em ``Spatial In-Memory Big data Analytics} support with spark \cite{xie2016simba}.
+Enriched information stored in databases is ready to be analyzed by data scientist. Data scientists finds  statistical significant information by aggregating on different attributes which is termed as slicing and dicing in data analytics world. Realtime operation of slicing and dicing with spatio-temporal operation is hard to achieve. A work from our lab by Li et. al (XDB) addresses this problem with online aggregation \cite{li2017wander}. Furthermore, spatial join operations are costly and it demands powerful resources. Another work from our lab Xie et al. integrated {\em ``Spatial In-Memory Big data Analytics}  \cite{xie2016simba} has extended Apache Spark SQL to support spatial queries by intoducing native indexing support over RDDs \cite{sparkcitation}. These works are vital to achieve realtime analytics support for our system.
 
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-TODO
+Scaling up the processing power in realtime environment is always a challenging task. The works mentioned above tries to solve the problem amicably. Sampling strategies on aggregate data guides data scientist which data to look for and which to not. It is essential that sampling strategies are good enough for intended data to fetch the truthful results. That poses a challenge for the system.
 
 \Paragraph{Spatio-temporal Query Support:}
 TODO
