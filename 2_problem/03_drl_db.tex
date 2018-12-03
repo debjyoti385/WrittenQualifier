@@ -1,7 +1,7 @@
 \section{Part B.  Self Instructing Database:}
 \label{part_b}
 \subsection{Overview:}
-Any standard database has considerable large number of configuration knobs. Databases needs to be tweaked with proper configuration for running efficiently with different workloads and hardware resources. Tweaking database configuration knowbs needs a great level of expertise from database administrator (DBA) because optimal configuration varies with the type of worloads. Beside that even finding optimal knob configurations might involve trial and error process for a DBA (which restrits the search spaces for knobs). An auto-configuring database system or self intructing database is a desirable feature to demand from database companies.
+Any standard database has considerable large number of configuration knobs. Databases needs to be tweaked with proper configuration for running efficiently with different workloads and hardware resources. Tweaking database configuration knobs needs a great level of expertise from database administrator (DBA) because optimal configuration varies with the type of workloads. Beside that, even finding optimal knob configurations might involve a trial and error process for a DBA (which restrits the search spaces for knobs). An auto-configuring database system or self intructing database is a desirable feature to demand from database companies.
 
 
 Human database administrators rely on experience and intuition to configure it. DRL process mimick same learning strategies i.e. learn from mistakes and correctness to maximize future rewards. Keeping this in mind we can explore how DRL can provide a solution to automatic database tuning.
@@ -34,7 +34,7 @@ of the configuration. Figure \ref{fig:database_agent} illustrates workload $\mat
 Changing the size of a database buffer is an example of action. Now we can represent $\mathcal{C}_t  \rightarrow a_t \in \mathcal{A}$.
 
 \textbf{3) Reward:}
-We map the metric $\mathcal{M}_t$ to rewards $r_t \in \mathcal{R}$. Since reward is a scalar function and metric $\mathcal{M}_t$ is a set of values representing the goodness and badness of database execution on workload $\mathcal{W}_t$, we need to apply some function $r_t = f(\mathcal{M}_t)$ to keep it simple. Later we will see an alternative approach where function $f$ is not needed with multi-agent DRL.
+We map the metric $\mathcal{M}_t$ to rewards $r_t \in \mathcal{R}$. Since reward is a scalar function and metric $\mathcal{M}_t$ is a set of values representing the goodness and badness of database execution on workload $\mathcal{W}_t$, we need to apply some function $r_t = f(\mathcal{M}_t)$ to keep it simple. Later we will see an alternative approach where function $f$ is not needed with a mutitask-agent DRL.
 
 \textbf{4) Hyperparamters for Neural Network:}
 This includes properties of
@@ -61,13 +61,13 @@ properties of the learning process like the number of iterations.
 
 \subsection*{Training and Challenges:}
 With the high level components defined, now we will go through the workflow of learner.
-Assuming the {\em neural network agent (NNA) } is configured with required hyperparamters, the learning process starts with time $t=0$.
-First, a workload $\mathcal{W}_t = s_t$  is feed into {\em neural network agent} (NNA). Then, the NNA explore action set $\mathcal{A}$ to produce an action (configuration) $a_t = \mathcal{C}_t$. The database environment on receiving action configuration $\mathcal{C}_t$ executes workload $\mathcal{W}_t$ and returns with metrics $\mathcal{M}_t$. Some function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ converts metric to scalar reward. This process is repeated many times and agents either explore action set or exploit learned optimal action to predict next best configuration. The desired goal is to optimize maximum cumulative positive rewards.
+Assuming the {\em neural network agent (NNA) } is configured with the required hyperparamters, the learning process starts with time $t=0$.
+First, a workload $\mathcal{W}_t = s_t$  is fed into {\em neural network agent} (NNA). Then, the NNA explore action set $\mathcal{A}$ to produce an action (configuration) $a_t = \mathcal{C}_t$. The database environment on receiving action configuration $\mathcal{C}_t$ executes workload $\mathcal{W}_t$ and returns with metrics $\mathcal{M}_t$. Some function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ converts metric to scalar reward. This process is repeated many times and agents either explore action set or exploit learned optimal action to predict next best configuration. The desired goal is to optimize maximum cumulative positive rewards.
 
-An intuitive solution for choosing function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ is  through these steps:\\
+An intuitive solution for choosing function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ is  through the following steps:\\
 \vspace{-4mm}
 \begin{itemize}
-  \item[-] negate all the metrics whose desired objective is to minimize, such that we now optimize for maximization.
+  \item[-] negate all the metrics whose desired objective is to minimize, such that we now optimize, for maximization.
   \item[-] normalize each metric $m_i \in \mathcal{M}_t$ with their satisfied range of operation.
   \item[-] rewards is sum  of normalized metrics.
 \end{itemize}
@@ -75,7 +75,7 @@ An intuitive solution for choosing function $f: \mathcal{M}_t \rightarrow r_t \i
 To avoid the problem of choosing a function $f$, we can transform the problem to a {\em Multi-task Deep RL} problem.
 Some hierarchical RL techniques also decompose tasks into subtasks, these methods then solve the subtasks
 in a locally optimal way and then global optimality can be achieved by aggregating back together. Another approach is to try {\em Linear Temporal Logic} specification that enables an interleaving of subtasks to support global optimization \cite{icarte2018teaching}.
-These techniques can help in avoiding selection of $f$ by considering specific set of metrics and optimize actions for it.
+These techniques can help in avoiding selection of $f$ by considering a specific set of metrics and optimize actions for it.
 
 
 \paragraph{Model based/Model-free Agent:}
@@ -85,7 +85,7 @@ But it is non-arguably plausible to choose gradient based methods because config
 Also selecting RL agent components such as {\em value functions, policy functions, actor-critic or model} is subjected to further experimentation with various hyperparameters (such as number of hidden layers, ReLU layers etc.).
 
 \paragraph{Transfer Learning:}
-It is essential for this type of system that a learned agents adapt to a new environment or new database.
+It is essential for this type of system that a learned agent adapt to a new environment or a new database.
 Transfer learning is only possible when the agent can obtain generalization in learning procedure.
 When the quality
 of the dataset increases, the risk of overfitting is lower and the learning
@@ -97,7 +97,7 @@ and should favor more robust policies. Hence, the sampling technique to obtain a
 
 
 \subsection{Conclusion:}
-In the Section \ref{part_b} I presented an overview of the DRL model for autonomous or self-instructing databases. The model proposed is the starting point which can be extended as required for experimentation.  Challenges remain have also been address in this small review.
+In Section \ref{part_b} I presented an overview of the DRL model for autonomous or self-instructing databases. The model proposed is the starting point which can be extended as required for experimentation.  Challenges remaining have also been address in this small review.
 A detailed deep dive with workload characteristics/representation is needed independently for future work on autonomous databases.
 
 

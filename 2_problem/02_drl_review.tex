@@ -1,6 +1,6 @@
 \section{Part A}
 \label{part_a}
-In reinforcement learning there is no supervisor but a {\em reward} signal to guide the learning process. Even the feddback is delayed and not instantenous which sets it as a different paradigm from other machine learning methods. In a sequential decision making process an/the {\em agent} get to pick an action at every time step which tries to optimize the future cumulative {\em reward} signal.
+In reinforcement learning there is no supervisor but a {\em reward} signal to guide the learning process. Even the feddback is delayed and not instantenous which sets it as a different paradigm from other machine learning methods. In a sequential decision making process an/the {\em agent} gets to pick an action at every time step which tries to optimize the future cumulative {\em reward} signal.
 Traditional Reinforcement Learning
 requires explicit design of state space and action space, while the mapping from state space to action space is learned \cite{sutton1998introduction}.
  That makes the problem spaces and the possible states in an environment very limited, only with fully observable state of environment for agent.  Neural networks enhances RL with the capability to make the agent learn a state abstraction and a policy approximation directly from its input data in a partially observable environment. Deep RL is the fruitful outcome of this attempt of RL enhancement.
@@ -34,10 +34,10 @@ An example of  {\em reward} in the case of flying toy robot helicopters are : (a
 Formally, state $s_t \in \mathcal{S}$ is a function of the history $\mathcal{H}_t$.
 $$s_t = f(\mathcal{H}_t)$$
 
-Environment and agent both can have threr own state which we define as $s_t^e$ and $s_t^a$ respectively. The environment state is usually not visible to the agent.
+Environment and agent both can have their own state which we define as $s_t^e$ and $s_t^a$ respectively. The environment state is usually not visible to the agent.
 
-In a fully observable system, the agent directly observes environment state i.e. $\omega_t = s^a_t = s_t^e$. Formally this is called Markov Decision Process (MDP). The Markov property means that the future of the process only
-depends on the current observation, and the agent has no interest in
+In a fully observable system, the agent directly observes environment state i.e. $\omega_t = s^a_t = s_t^e$. Formally this is called as Markov Decision Process (MDP). The Markov property means that the future of the process only
+depends on the current observation and the agent has no interest in
 looking at the full history.
 
 \Paragraph{Markov Decision Process (MDP):}\\  An MDP is a 5-tuple $(\mathcal{S}, \mathcal{A}, T, \mathcal{R}, \gamma)$ where
@@ -98,7 +98,7 @@ estimated \cite{bertsekas2005dynamic}.
 
 \subsection{RL Agent Components:}
 So far, we have introduced the key formalism used in RL,
-the MDP and the POMDP. Now I will talk about what is inside an RL agent and the components it uses for learning. An RL agent may include one or more of these component for learning.\\
+the MDP and the POMDP. Now I will talk about what is inside an RL agent and the components it uses for learning. An RL agent may include one or more of the following component for learning.\\
 \Paragraph{\em Value functions:}
 Value function attempts to measure goodness/badness of each state and/or action.
 In other words, value function methods are based on estimating the value
@@ -108,7 +108,7 @@ function $V_{\pi}(s)$
  is the expected return when starting in state $s$
 and following $\pi$ henceforth:
 $$V_{\pi}(s) = \mathbb{E}_\pi [R_t +\gamma R_{t+1} + \gamma^2 R_{t+2}+\ldots  | s_t =s ]$$
-where $\gamma \in [0,1]$ is discount parameter, that governs the future sightedness of the model.
+where $\gamma \in [0,1]$ is a discount parameter, that governs the future sightedness of the model.
 \\
 \Paragraph{\em Policy Search:}  A policy is the {\em agent}'s behavior. It is a map from state to action. Examples of some policies are: \\
 (i) {\em Deterministic Policy:} This is the simplest policy, here an action $a$ is mapped to a state $s$ i.e. $a = \pi(s)$.\\
@@ -149,14 +149,14 @@ but partial solution in this latter scenario is to use model
 predictive control, where planning is repeated after small
 sequences of actions in the real environment \cite{bertsekas2005dynamic}.
 Although
-deep neural networks can potentially produce very complex
+deep neural networks can potentially produce a very complex
 and rich models \cite{oh2015action, finn2016deep}, sometimes simpler, more data efficient
 methods are preferable \cite{gu2016continuous}.
 
 \subsection{Deep Reinforcement Learning (DRL):}
-Traditional RL works was mainly on low dimentional problems (i.e. few state space, limited actions etc.). Integration of deep neural network with RL framework bolster the framework, by converting higher dimentional problems into low dimentional representations. Initial DRL works was mainly involved on scaling up prior work in RL to high dimensional problems.
+Traditional RL works was mainly on low dimentional problems (i.e. few state space, limited actions etc.). Integration of deep neural network with RL framework bolster the framework by converting higher dimentional problems into low dimentional representations. Initial DRL works was mainly involved on scaling up prior work in RL to high dimensional problems.
 DRL can deal
-efficiently with the curse of dimensionality, unlike tabular and
+efficiently with the curse of dimensionality unlike tabular and
 traditional non-parametric methods \cite{bengio2013representation}.
 
 In DRL, deep neural network is trained to model/predict one or more of (a) the optimal value functions $V^\pi(s)$ (b) optimal policy $\pi(s)$
@@ -180,7 +180,7 @@ Q-functions learns action-value function. In a traditional RL problem, a Q-learn
 On the other hand, the DQN takes the state-a stack of greyscale frames from the video game-and processes it with convolutional and
 fully connected layers, with ReLU nonlinearities in between each layer. At the final layer, the network outputs a discrete action, which corresponds to one of the possible control inputs for the game.  Given the current state and chosen action, the game returns a new score.
 The DQN uses the reward-the difference
-between the new score and the previous one-to learn from its decision. More precisely, the reward is used to update its estimate of Q, and the error between its previous estimate and its new estimate is backpropagated through the network.
+between the new score and the previous one-to learn from its decision. More precisely, the reward is used to update its estimate of $Q$ and the error between its previous estimate and its new estimate is backpropagated through the network.
 
 \begin{figure}[t]
 	\includegraphics[width=0.95\linewidth ]{fig/dqn.png}
@@ -192,17 +192,17 @@ between the new score and the previous one-to learn from its decision. More prec
 \subsection{Current Research Challenges:}
 To end with the short review on DRL, I present some of the research challenges in Deep Reinforcement Learning process.
 \paragraph{Exploration vs Exploitation:}
-Online decision making involves a fundamental choice {\em (i) Exploitation} or {\em (ii) Exploration}. Exploitation refers to make the best decision with the current information gathered by agent. Whereas exploration involves attempting new action for more information. This is also known as {\em exploitation-exploration} dilemma. The best long-term strategy may involve lot of exploration and short term sacrifices. On the other hand if the agent have already found best strategy exploration may reduced the rewards.
+Online decision making involves a fundamental choice {\em (i) Exploitation} or {\em (ii) Exploration}. Exploitation refers to making the best decision with the current information gathered by the agent. Whereas exploration involves attempting new action for more information. This is also known as {\em exploitation-exploration} dilemma. The best long-term strategy may involve lot of exploration and short term sacrifices. On the other hand if the agent has already found best strategy exploration, it may reduce the rewards.
 
 \paragraph{Transfer Learning:}
 Transfer learning is about efficiently using previous knowledge from a
-source environment to achieve new (slightly) different tasks in a target environment. To achieve this agent must develop generalization capabilities such as {\em (i) feature selection (ii) removing asymptotic bias (iii) reduce overfitting and function approximator (iv) Optimizing horizon} (length of observations history involved in decision making process) etc.
+source environment to achieve new (slightly) different tasks in a target environment. To achieve this, agent must develop generalization capabilities such as {\em (i) feature selection (ii) removing asymptotic bias (iii) reduce overfitting and function approximator (iv) Optimizing horizon} (length of observations history involved in decision making process) etc.
 
 \paragraph{Learning without explicit reward function:}
 In reinforcement learning, the reward function defines the goals to
 be achieved by the agent. Due to the complexity of the environments in practical
 applications, defining a reward function can turn out to be rather
-complicated. Approaches like {\em imitation learning} (supervised learning) and {\em inverse reinforcement learning} where agent determines possible reward functions given observations of optimal behavior, are research challenges for next decade.
+complicated. Approaches like {\em imitation learning} (supervised learning) and {\em inverse reinforcement learning} where agent determines possible reward functions given observations of optimal behavior, are research challenges for the next decade.
 
 
 
