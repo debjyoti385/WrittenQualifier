@@ -4,10 +4,12 @@ Social media sites seldom reveals the amount of data they store or ingest on a d
 \Paragraph{1. Storage space estimate from media units:}
 This method works for all the social media sites mentioned in Table \ref{table:media_units} where the approximate storage space required by a media unit is known.
 
+\vspace{-2mm}
 \paragraph{Youtube:}
 Let us take an example of a Youtube video data. From Table  \ref{table:media_units}, we find that in the year 2017 users uploaded 720,000 hours of video on Youtube per day. First, assuming the fact that Youtube fairly stores most of the videos
  in 1080p and also stores them in multiple resolution such as 240p, 360p, 720p and format e.g. Webm, flv, mp4, 3gp, mp3. We can determine the amount of storage space needed for a 1 minute video \cite{youtube_stats}.
 
+\vspace{-3mm}
 \begin{equation}
 \begin{split}
   &27.71 \text{ MB (Webm)} + 17.00 \text{ MB (flv)} + 554.43 \text{ KB (3gp)} \\
@@ -18,6 +20,7 @@ Let us take an example of a Youtube video data. From Table  \ref{table:media_uni
 \end{equation}
  From the above Equation \ref{eq:youtube}, we find that $720,000 \times 60 \times 93.8614355 \approx 4.055$ petabytes (PB)  of storage space is required by Youtube everyday. We can also calculate the total amount of storage space ingested during the period of 2013 to 2017 from Table \ref{table:media_units} by utilizing area under the curve method with interpolation. The above method reckons 3096.17 PB or 3.096 exabytes (EB) of storage. Considering videos before 2013 and new 4K video which takes more space, it can be easily assumed that Youtube uses 10-15 EB of storage space.
 
+\vspace{-2mm}
 \paragraph{Twitter:}
 Similar to the method above, we can find the space required to store a tweet. A
 tweet is stored in Twitter as UTF-8 format. This takes 140 characters tweets at
