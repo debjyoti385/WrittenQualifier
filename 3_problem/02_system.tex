@@ -1,6 +1,6 @@
-\section{Part 1a) System Architecture  Spatio-Temporal Analysis for Health Analysis:}
+\section{ a) System Architecture  Spatio-Temporal Analysis for Health Analysis:}
 \label{part_a}
-A comprehensive system for spatio-temporal analysis requires the following components which can be braodly categorized based on their operations:
+A comprehensive system for spatio-temporal analysis requires the following components which can be broadly categorized based on their operations:
 % \vspace{-4mm}
 
 \begin{itemize}
@@ -42,7 +42,7 @@ A comprehensive system for spatio-temporal analysis requires the following compo
     }
 \end{itemize}
 
-In the follwong part I will throw some light on each component and discuss about challenges that it might have.
+In the following part I will throw some light on each component and discuss about challenges that it might have.
 
 \subsection{Data Ingestion}
 \Paragraph{Data Collection Module:}
@@ -69,7 +69,7 @@ Increasing need to collect more data about users. If we are interested in home l
 
 \subsection{AI/ML Models:}
 \Paragraph{Tweets/Document Classification Model:}
-In order to distinguish between relevant (e.g. health, food, disease etc.) and  non relevant tweets/documents we need a tweet classification component. Unsupervised methods like topic modeling with LDA \cite{blei2003latent}, pLSA \cite{hofmann1999probabilistic} and phrase LDA \cite{el2014scalable} and modified versions of them can help in classification problem. However, microblogs classification for targeted topic needs further attention. In our work \cite{paul2017compass} for {\em Spatio-temporal Sentiment Analysis for US Election}, we used political and non-poilitical tweet classification in a semi-supervised approach. The semi-supervised approach starts by creating training data for classification. Topic modeling act as a bootstrap method for creating training data that helps in learning tweet classification through context. This semi-supervised approach proved to be more robust \cite{paul2017compass}.
+In order to distinguish between relevant (e.g. health, food, disease etc.) and  non relevant tweets/documents we need a tweet classification component. Unsupervised methods like topic modeling with LDA \cite{blei2003latent}, pLSA \cite{hofmann1999probabilistic} and phrase LDA \cite{el2014scalable} and modified versions of them can help in classification problem. However, microblogs classification for targeted topic needs further attention. In our work \cite{paul2017compass} for {\em Spatio-temporal Sentiment Analysis for US Election}, we used political and non-political tweet classification in a semi-supervised approach. The semi-supervised approach starts by creating training data for classification. Topic modeling act as a bootstrap method for creating training data that helps in learning tweet classification through context. This semi-supervised approach proved to be more robust \cite{paul2017compass}.
 
 \begin{figure}[t]
 	\includegraphics[width=0.99\linewidth ]{fig/HealthTopicExample.png}
@@ -81,7 +81,7 @@ In order to distinguish between relevant (e.g. health, food, disease etc.) and  
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-The semi-supervised approach used in \cite{paul2017compass} have not been used yet for classification in health realted topics. Previous works like {\em topic model for ailment} \cite{paul2012model} (e.g. examples of word and topic realtion is shown in  Figure \ref{fig:topic}) are extension of topic modeling with LDA and specially descigned for ailment tweet discovery. Remodeling semi-supervised classification for disease and health are yet to be experimented and might face challenges.
+The semi-supervised approach used in \cite{paul2017compass} have not been used yet for classification in health related topics. Previous works like {\em topic model for ailment} \cite{paul2012model} (e.g. examples of word and topic relation is shown in  Figure \ref{fig:topic}) are extension of topic modeling with LDA and specially designed for ailment tweet discovery. Remodeling semi-supervised classification for disease and health are yet to be experimented and might face challenges.
 For example tweets like {``I feel like I'm going to die of Bieber Fever, No Joke!"} and  {\em ``Web design class gives me a huge headache everytime"} both tweets does not talk about health condition. Hence learning context of words is a desirable approach.
 
 \Paragraph{Sentiment Analysis Model:}
@@ -89,7 +89,7 @@ From past decade opinion mining on text data has been a popular research topic. 
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-To improve upon the existing state-of-the-art methods, we have to keep adopting and experiment new AI methods. Exploration will achieve more fruitful results if proper training/ground truth datasets on sentiment are available in future. Also sentiment anaysis with AI is limited to only a few language. To widespread the technology to different languages, we need resources (datasets), efforts and experiments to achieve rewarding results.
+To improve upon the existing state-of-the-art methods, we have to keep adopting and experiment new AI methods. Exploration will achieve more fruitful results if proper training/ground truth datasets on sentiment are available in future. Also sentiment analysis with AI is limited to only a few language. To widespread the technology to different languages, we need resources (datasets), efforts and experiments to achieve rewarding results.
 
 
 \Paragraph{Image Classification Model:}
@@ -105,7 +105,12 @@ Recent works on object detection from images will be our starting point \cite{gi
 Collected data enriched with information from ML/AI models are stored in databases. Spatio-temporal properties of data demands more attention with indexing. NoSQL key-value based databases can store all the information while the spatial indexes store object ids with location for accelerated access \cite{christensen2015storm}.
 
 \subsection{Data Processing Pipeline:}
-Creating the pipeline starting from data collection to data sink with so many components needs expertise in data processing. In our recent work {\em AI Pro: Data Processing Pipeline for AI models}\footnote{\href{http://www.cs.utah.edu/~deb/aipro/}{www.cs.utah.edu/deb/aipro/}} takes care of setting up the pipeline for end users just by configuration (which is popularly known as {\em code as configuration}).
+Creating the pipeline starting from data collection to data sink with so many
+components needs expertise in data processing. In our recent work {\em AI Pro:
+Data Processing Pipeline for AI models}
+\footnote{\href{https://www.cs.utah.edu/~deb/aipro}{\texttt{
+        https://www.cs.utah.edu/{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}deb/aipro}}}
+ takes care of setting up the pipeline for end users just by configuration (which is popularly known as {\em code as configuration}).
 Researchers opting for customized processing pipeline will be able to create it with little or no effort.
 
 \vspace{-2mm}
@@ -124,7 +129,7 @@ evaluate the information/statistics vital for the analysis. It is essential that
 
 \Paragraph{Spatio-temporal Query Support:}
 As mentioned earlier in data storage section that geotagged data needs special attention, it is also true for query support.
-Spatial operations like distance range, nearest neighbour requires special support and they are costly toward resources. Another work from our lab Xie et al. integrated {\em ``Spatial In-Memory Big data Analytics}  \cite{xie2016simba} has extended Apache Spark SQL to support spatial queries by intoducing native indexing support over RDDs \cite{zaharia2012resilient}.
+Spatial operations like distance range, nearest neighbour requires special support and they are costly toward resources. Another work from our lab Xie et al. integrated {\em ``Spatial In-Memory Big data Analytics}  \cite{xie2016simba} has extended Apache Spark SQL to support spatial queries by introducing native indexing support over RDDs \cite{zaharia2012resilient}.
 
 \subsection{Visualization:}
 \Paragraph{interactive Dashboard:}
@@ -132,7 +137,7 @@ Interactive dashboard for online analysis integrated with realtime processing AP
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-Interactive dashboard needs to be integrated with Analytics Processing API serve to fetch data with query. The tools like d3.js can help in designing the visualization but it requires a good skill and understanding of the subject.
+Interactive dashboard needs to be integrated with Analytics Processing API serve to fetch data with query. The tools like d3.js \footnote{\href{https://d3js.org/}{\texttt{https://d3js.org/}}} can help in designing the visualization but it requires a good skill and understanding of the subject.
 
 
 \subsection{Conclusion:}

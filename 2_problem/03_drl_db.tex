@@ -1,7 +1,7 @@
 \section{Part B.  Self Instructing Database:}
 \label{part_b}
 \subsection{Overview:}
-Any standard database has considerable large number of configuration knobs. Databases needs to be tweaked with proper configuration for running efficiently with different workloads and hardware resources. Tweaking database configuration knobs needs a great level of expertise from database administrator (DBA) because optimal configuration varies with the type of workloads. Beside that, even finding optimal knob configurations might involve a trial and error process for a DBA (which restrits the search spaces for knobs). An auto-configuring database system or self intructing database is a desirable feature to demand from database companies.
+Any standard database has considerable large number of configuration knobs. Databases needs to be tweaked with proper configuration for running efficiently with different workloads and hardware resources. Tweaking database configuration knobs needs a great level of expertise from database administrator (DBA) because optimal configuration varies with the type of workloads. Beside that, even finding optimal knob configurations might involve a trial and error process for a DBA (which restricts the search spaces for knobs). An auto-configuring database system or self instructing database is a desirable feature to demand from database companies.
 
 
 Human database administrators rely on experience and intuition to configure it. DRL process mimick same learning strategies i.e. learn from mistakes and correctness to maximize future rewards. Keeping this in mind we can explore how DRL can provide a solution to automatic database tuning.
@@ -34,9 +34,9 @@ of the configuration. Figure \ref{fig:database_agent} illustrates workload $\mat
 Changing the size of a database buffer is an example of action. Now we can represent $\mathcal{C}_t  \rightarrow a_t \in \mathcal{A}$.
 
 \textbf{3) Reward:}
-We map the metric $\mathcal{M}_t$ to rewards $r_t \in \mathcal{R}$. Since reward is a scalar function and metric $\mathcal{M}_t$ is a set of values representing the goodness and badness of database execution on workload $\mathcal{W}_t$, we need to apply some function $r_t = f(\mathcal{M}_t)$ to keep it simple. Later we will see an alternative approach where function $f$ is not needed with a mutitask-agent DRL.
+We map the metric $\mathcal{M}_t$ to rewards $r_t \in \mathcal{R}$. Since reward is a scalar function and metric $\mathcal{M}_t$ is a set of values representing the goodness and badness of database execution on workload $\mathcal{W}_t$, we need to apply some function $r_t = f(\mathcal{M}_t)$ to keep it simple. Later we will see an alternative approach where function $f$ is not needed with a multitask-agent DRL.
 
-\textbf{4) Hyperparamters for Neural Network:}
+\textbf{4) Hyperparameters for Neural Network:}
 This includes properties of
 the neural network (e.g. number of hidden layers, number of nodes per layer) as well as
 properties of the learning process like the number of iterations.
@@ -61,7 +61,7 @@ properties of the learning process like the number of iterations.
 
 \subsection*{Training and Challenges:}
 With the high level components defined, now we will go through the workflow of learner.
-Assuming the {\em neural network agent (NNA) } is configured with the required hyperparamters, the learning process starts with time $t=0$.
+Assuming the {\em neural network agent (NNA) } is configured with the required hyperparameters, the learning process starts with time $t=0$.
 First, a workload $\mathcal{W}_t = s_t$  is fed into {\em neural network agent} (NNA). Then, the NNA explore action set $\mathcal{A}$ to produce an action (configuration) $a_t = \mathcal{C}_t$. The database environment on receiving action configuration $\mathcal{C}_t$ executes workload $\mathcal{W}_t$ and returns with metrics $\mathcal{M}_t$. Some function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ converts metric to scalar reward. This process is repeated many times and agents either explore action set or exploit learned optimal action to predict next best configuration. The desired goal is to optimize maximum cumulative positive rewards.
 
 An intuitive solution for choosing function $f: \mathcal{M}_t \rightarrow r_t \in \mathbb{R}$ is  through the following steps:\\
@@ -79,8 +79,8 @@ These techniques can help in avoiding selection of $f$ by considering a specific
 
 
 \paragraph{Model based/Model-free Agent:}
-Model-free and model based both type of agent can be frutiful in this type of scenario. However model based approach needs more effort in design.
-The advantage of model based approach is that it can learn strategies to trade-off exploration and eploitation to learn quickly.
+Model-free and model based both type of agent can be fruitful in this type of scenario. However model based approach needs more effort in design.
+The advantage of model based approach is that it can learn strategies to trade-off exploration and exploitation to learn quickly.
 But it is non-arguably plausible to choose gradient based methods because configurations knobs tend to have convex properties.
 Also selecting RL agent components such as {\em value functions, policy functions, actor-critic or model} is subjected to further experimentation with various hyperparameters (such as number of hidden layers, ReLU layers etc.).
 
