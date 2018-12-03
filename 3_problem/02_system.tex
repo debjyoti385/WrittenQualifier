@@ -42,15 +42,15 @@ A comprehensive system for spatio-temporal analysis requires the following compo
     }
 \end{itemize}
 
-In the follwong part I will throw some light on each component and discuss about challenges if they have any.
+In the follwong part I will throw some light on each component and discuss about challenges that it might have.
 
 \subsection{Data Ingestion}
 \Paragraph{Data Collection Module:}
-Twitter is biggest social media data source for researchers. Twitter's 1\% sample data stream API is the most common approach for data collection. Twitter statistics reveals that only 0.85\% of tweets in the stream is geotagged \cite{sloan2013knowing} which is significantly lower. Utmost effort and care should be taken to collect more geotagged data. Twitter's location based API should be used for such purpose.
+Twitter is the biggest social media data source for researchers. Twitter's 1\% sample data stream API is the most common approach for data collection. Twitter statistics reveals that only 0.85\% of tweets in the stream is geotagged \cite{sloan2013knowing} which is significantly lower. Utmost effort and care should be taken to collect more geotagged data. Twitter's location based API should be used for such purpose.
 
 \paragraph{Challenges:}
 Collecting data from location based API or any other keyword based search API are restrictive in nature with request limit per hour.
-Evading this problem might be challenging with limit resources. Multiple number of data collection servers collecting mutually exclusive geographical region can help to collect more geotagged data. For some social media sites it is almost necessary to use proxy network to avoid IP block.
+Evading this problem might be challenging with limited resources. Multiple number of data collection servers collecting mutually exclusive geographical region can help to collect more geotagged data. For some social media sites, it is almost necessary to use proxy network to avoid IP block.
 
 \subsection{Data Enrichment:}
 \Paragraph{Data Cleaning Module:}
@@ -60,41 +60,41 @@ Data collected from social media often needs to be cleaned (e.g. tokenize, langu
 \paragraph{Challenges:} There are many good tools for data cleaning. The main concerns are {\em(i) which library tools to use for desired result. (ii) the library should have high processing throughput}
 
 \Paragraph{Location Extraction Module}
-As mentioned earlier that percentage of geotagged tweet is not high. However, a lot of attempts have been made to predict the location of the tweet based on user activity and history.  Geotagging users is now a well studied problem and it has a median error of 6.38 km which might not be very significant for our analysis\cite{compton2014geotagging}.
+As mentioned earlier that the percentage of geotagged tweets is not high. However, a lot of attempt has been made to predict the location of the tweet based on user activity and history.  Geotagging users is now a well studied problem and it has a median error of 6.38 km which might not be very significant for our analysis\cite{compton2014geotagging}.
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-Need to collecting more data about users. If we are interested in home location of users then the above mentioned \cite{compton2014geotagging} technique is fine. However if we want the dynamic location as the users move or travel then it is a challenging problem.
+Increasing need to collect more data about users. If we are interested in home location of users then the above mentioned \cite{compton2014geotagging} technique is satisfactory. However, if we want the dynamic location as the users move or travel then it becomes a challenging problem.
 
 
 \subsection{AI/ML Models:}
 \Paragraph{Tweets/Document Classification Model:}
-In order to distinguish between relevant (e.g. health, food, disease etc.) and  non relevant tweets/documents we a document classification component. Unsupervised methods like topic modeling with LDA \cite{blei2003latent}, pLSA \cite{hofmann1999probabilistic} and phrase LDA \cite{el2014scalable} and modified versions of them can help in classification problem. However, microblogs classification for targeted topic needs further attention. In our work \cite{paul2017compass} for {\em Spatio-temporal Sentiment Analysis for US Election}, we used political and non-poilitical tweet classification in a semi-supervised approach. The semi-supervised approach starts by creating training data for classification. Topic modeling act as a bootstrap method for creating training data that helps in learning tweet classification through context. This semi-supervised approach proved to be more robust \cite{paul2017compass}.
+In order to distinguish between relevant (e.g. health, food, disease etc.) and  non relevant tweets/documents we need a tweet classification component. Unsupervised methods like topic modeling with LDA \cite{blei2003latent}, pLSA \cite{hofmann1999probabilistic} and phrase LDA \cite{el2014scalable} and modified versions of them can help in classification problem. However, microblogs classification for targeted topic needs further attention. In our work \cite{paul2017compass} for {\em Spatio-temporal Sentiment Analysis for US Election}, we used political and non-poilitical tweet classification in a semi-supervised approach. The semi-supervised approach starts by creating training data for classification. Topic modeling act as a bootstrap method for creating training data that helps in learning tweet classification through context. This semi-supervised approach proved to be more robust \cite{paul2017compass}.
 
 \begin{figure}[t]
 	\includegraphics[width=0.99\linewidth ]{fig/HealthTopicExample.png}
     \vspace{-2mm}
     \caption{An example for topic model on ailment\cite{paul2012model}.}
-    \label{fig:energy_usage}
+    \label{fig:topic}
 \end{figure}
 
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-The semi-supervised approach used in \cite{paul2017compass} have not been used yet for classification in health realted topics. Previous works like {\em topic model for ailment} \cite{paul2012model} (e.g. examples of word and topic realtion is shown in  Figure \ref{}) are extension of topic modeling with LDA and specially descigned for ailment tweet discovery. Remodeling semi-supervised classification for disease and health are yet to experiment and might face challenges.
-For example tweets like {``I feel like I'm going to die of Bieber Fever, No Joke!"} and  {\em ``Web design class gives me a huge headache everytime"} both tweets does not talk about health condition. Hence learning context of words is desirable approach.
+The semi-supervised approach used in \cite{paul2017compass} have not been used yet for classification in health realted topics. Previous works like {\em topic model for ailment} \cite{paul2012model} (e.g. examples of word and topic realtion is shown in  Figure \ref{fig:topic}) are extension of topic modeling with LDA and specially descigned for ailment tweet discovery. Remodeling semi-supervised classification for disease and health are yet to be experimented and might face challenges.
+For example tweets like {``I feel like I'm going to die of Bieber Fever, No Joke!"} and  {\em ``Web design class gives me a huge headache everytime"} both tweets does not talk about health condition. Hence learning context of words is a desirable approach.
 
 \Paragraph{Sentiment Analysis Model:}
 From past decade opinion mining on text data has been a popular research topic. Pang et. al. \cite{pang2008opinion} gives a comprehensive survey on incipient opinion mining research. Twitter sentiment analysis with machine learning approaches like SVM \cite{joachims1998text}, lexicon based \cite{taboada2011lexicon}, LDA \cite{duric2012feature,kouloumpis2011twitter} and neural network \cite{dos2014deep,tang2015document} etc. Our work on {\em ``Spatio-temporal sentiment analysis on US Election"} used LSTM-RNN {\em } and FastText for achieving state-of-the-art result.
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-To improve upon the existing state-of-the-art methods, we have to keep adopting and experiment new AI methods. Exploration will achieve more fruitful result if proper training/ground truth datasets on sentiment are available in future. Also sentiment anaysis with AI is limited to only a few language. To widespread the technology to different language we need resources (datasets), effort and experiments to achieve rewarding results.
+To improve upon the existing state-of-the-art methods, we have to keep adopting and experiment new AI methods. Exploration will achieve more fruitful results if proper training/ground truth datasets on sentiment are available in future. Also sentiment anaysis with AI is limited to only a few language. To widespread the technology to different languages, we need resources (datasets), efforts and experiments to achieve rewarding results.
 
 
 \Paragraph{Image Classification Model:}
 {\em ``A picture is worth thousand words"}  is an English language-idiom that rightly characterize the scenario for tweets \cite{advice1911syracuse}. Twitter statistics reveals that 42\% of tweets attach images \cite{tweets_images}. Integrating image analysis module will reveal more information that is worth looking into.
-To the best of my knowledge we haven't yet researched a lot on public health by integrating twitter images.
+To the best of my knowledge, we haven't yet researched a lot on public health by integrating twitter images.
 
 \vspace{-2mm}
 \paragraph{Challenges:}
@@ -110,7 +110,7 @@ Researchers opting for customized processing pipeline will be able to create it 
 
 \vspace{-2mm}
 \paragraph{Challenges:}
-AI Pro processing pipeline needs adapt new technologies and support them, this requires community collaboration.
+AI Pro processing pipeline needs to adapt new technologies and support them, this requires community collaboration.
 
 \subsection{Analytics Processing Engine:}
 \Paragraph{Realtime Data Aggregation Support:}
@@ -124,11 +124,11 @@ evaluate the information/statistics vital for the analysis. It is essential that
 
 \Paragraph{Spatio-temporal Query Support:}
 As mentioned earlier in data storage section that geotagged data needs special attention, it is also true for query support.
-Spatial operations like distance range, nearest neighbour requires special support and they are costly toward resources. Another work from our lab Xie et al. integrated {\em ``Spatial In-Memory Big data Analytics}  \cite{xie2016simba} has extended Apache Spark SQL to support spatial queries by intoducing native indexing support over RDDs \cite{sparkcitation}.
+Spatial operations like distance range, nearest neighbour requires special support and they are costly toward resources. Another work from our lab Xie et al. integrated {\em ``Spatial In-Memory Big data Analytics}  \cite{xie2016simba} has extended Apache Spark SQL to support spatial queries by intoducing native indexing support over RDDs \cite{zaharia2012resilient}.
 
 \subsection{Visualization:}
 \Paragraph{interactive Dashboard:}
-Interactive dashboard for online analysis integrated with realtime processing APIs is a feature data scientist will love to see. Filtering and selection from visualization will make the system amiable and encouraging for user. Realtime dashboard to find the rate of mentions of different topics and other time series analysis might also be important for data scientist. STORM a data anlysis project from InitialDLab supports similar interface \cite{}. Interactive visualization and cohesive analysis might be able find correlation among health, food and physical activity.
+Interactive dashboard for online analysis integrated with realtime processing APIs is a feature data scientist would like to see. Filtering and selection from visualization will make the system amiable and encouraging for user. Realtime dashboard to find the rate of mentions of different topics and other time-series analysis might also be important for data scientist. STORM a spatio-temporal project from InitialDLab supports similar interface \cite{christensen2015storm}. Interactive visualization and cohesive analysis might be able to find a correlation among health, food and physical activity.
 
 \vspace{-2mm}
 \paragraph{Challenges:}
